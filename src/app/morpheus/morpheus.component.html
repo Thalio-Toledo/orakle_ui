@@ -1,0 +1,44 @@
+
+    <div id="edition">
+
+        <p-button [label]="editMode? 'Preview': 'Edit'" severity="secondary"
+         [icon]="editMode? 'pi pi-eye' : 'pi pi-pencil' " (click)="showPreview()"/>
+    
+        @if(editMode){
+            <!-- <p-button severity="contrast" (click)="changeTheme('vs-dark')">Dark Mode</p-button>
+            <p-button severity="secondary" (click)="changeTheme('vs-light')">Light Mode</p-button> -->
+    
+            @if(saveLoading){
+                <div class="loading">
+                    <p-progress-spinner strokeWidth="8" fill="transparent" animationDuration=".5s" [style]="{ width: '50px', height: '50px' }" />
+                </div>
+            }
+        }
+    
+        <!-- <div #editorContainer style="height: 600px; border: 1px solid #ccc;" [hidden]="!editMode"></div> -->
+         
+        <ngx-monaco-editor
+        style="height: 500px; display: block; margin: 16px;"
+        [options]="editorOptions"
+        [(ngModel)]="code"
+        ></ngx-monaco-editor>
+    </div>
+
+
+<div id="preview">
+    <!-- <div class="summary" [hidden]="editMode">
+        <div pRipple class="box" style="border: 1px solid rgba(145, 145, 145, 0.897); --p-ripple-background: rgba(75, 175, 80, 0.3)">
+            Summary
+            @for (title of titlesToSummary; track $index) {
+                <nav>
+                    <li>
+                        <a class="link" [href]="generateIds(title,true)">{{title}}</a>
+                    </li>
+                </nav>
+            }
+        </div>
+   </div> -->
+
+   <div class="preview" [innerHTML]="sanitizedHtml" [hidden]="editMode"></div>
+</div>
+

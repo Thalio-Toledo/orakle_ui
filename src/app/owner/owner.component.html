@@ -1,0 +1,34 @@
+
+<div id="owner-menu">
+    <p>{{owner.profileName}}</p>
+    <p-button label="Profile" icon="pi pi-user" severity="info" (click)="showProfile()" />
+    <p-button label="Logout" icon="pi pi-sign-out" severity="info" (click)="logout()"/>
+    <hr>
+    <input [formControl]="artefactTitle"  type="text" placeholder='Search artefacts' pInputText />
+    <div class="owner-artefacts">
+        @for (artefact of artefacts; track $index) {
+            <div class="artefact-menu">
+                <p-button class="menu-item"
+                     (click)="getArtefact(artefact.artefactId!)" 
+                    [label]="shortArtefactTitle(artefact.title)" variant="text" severity="secondary" [pTooltip]="artefact.title"/>
+                <p-button (click)="deleteArtefact(artefact.artefactId!)" icon="pi pi-times" [rounded]="true" [text]="true" severity="danger" />
+            </div>
+        }
+    </div>
+    <p-button label="New"  icon="pi pi-plus" variant="text" severity="secondary" (click)="createArtefact()"/>
+</div>
+
+
+<div id="owner-profile">
+    @if (loadingStart) {
+
+        <div id="editor-menu">
+            <p-button severity="success" (click)="save()">Save</p-button>
+            <p-selectbutton [options]="publicOptions" [(ngModel)]="artefact.public" optionLabel="label" optionValue="value" />
+
+        </div>
+        <app-morpheus [markdownText]="markdownText"></app-morpheus>
+    }@else {
+        <p-progress-spinner class="loading" strokeWidth="8" fill="transparent" animationDuration=".5s" [style]="{ width: '50px', height: '50px' }" />
+    }
+</div>

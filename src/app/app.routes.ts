@@ -1,3 +1,26 @@
 import { Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { OwnerComponent } from './owner/owner.component';
+import { ProfileComponent } from './profile/profile.component';
+import { OwnerGuardService } from './services/owner-guard.service';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+    {
+        path:'',
+        redirectTo:'profile',
+        pathMatch: 'full'
+    },
+    {
+        path:'owner',
+        component: OwnerComponent,
+        canActivate:[OwnerGuardService]
+    },
+    {
+        path:'profile',
+        component: ProfileComponent
+    },
+    {
+        path:'login',
+        component: LoginComponent
+    },
+];

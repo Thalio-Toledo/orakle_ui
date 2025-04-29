@@ -1,0 +1,43 @@
+<div class="login-container">
+    <div class="login-card">
+      
+      @if(loginMode){
+        <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
+          <label>
+            <input type="email" placeholder="Email" formControlName="email" />
+          </label>
+  
+          <label>
+            <input type="password" placeholder="Senha" formControlName="password" required />
+          </label>
+  
+          <button type="submit">Login</button>
+          @if(error){
+            <p>{{ error }}</p>
+          }
+        </form>
+      }@else {
+        <form [formGroup]="registerForm" (ngSubmit)="register()" class="login-form">
+          <label>
+            <input type="name" placeholder="Name" formControlName="name" />
+          </label>
+          <label>
+            <input type="email" placeholder="Email" formControlName="email" />
+          </label>
+  
+          <label>
+            <input type="password" placeholder="Senha" formControlName="password" required />
+          </label>
+  
+          <button type="submit">Register</button>
+          @if(error){
+            <p>{{ error }}</p>
+          }
+        </form>
+      }
+      <p-button [label]="loginMode ? 'Create account': 'Login' " (click)="setRegisterMode()"/>
+
+    </div>
+  </div>
+  
+  

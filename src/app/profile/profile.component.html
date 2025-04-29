@@ -1,0 +1,44 @@
+<div id="profile-header">
+    <h1 (click)="setAboutView()">{{owner.profileName}}</h1>
+    <div class="profile-header-actions">
+        <p-button (click)="setBlogView()" label="Articles"  variant="text" />
+    </div>
+</div>
+
+<div class="profile-content">
+    @if(blogView){
+
+        <div class="artefact-menu">
+            <div class="card">
+                <div class="flex justify-center items-center mb-6 gap-2">
+                </div>
+                <p-table [value]="artefacts" selectionMode="single" [(selection)]="selectedProduct" [metaKeySelection]="metaKey" dataKey="id" [tableStyle]="{ 'min-width': '50rem' }">
+                    <ng-template #header>
+                        <tr>
+                            <th>Date</th>
+                            <th>Title</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template #body let-product>
+                        <tr (click)="getArtefact(product.artefactId)">
+                            <td>{{ product.creationDate | date: 'yyyy'}}</td>
+                            <td >{{ product.title }}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    }
+    @else {
+        @if(loadingText){
+            <app-translator [markdownText]="markdownText"/>
+        }
+    }
+
+</div>
+
+
+
+
+
+
