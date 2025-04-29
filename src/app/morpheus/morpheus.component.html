@@ -5,8 +5,6 @@
          [icon]="editMode? 'pi pi-eye' : 'pi pi-pencil' " (click)="showPreview()"/>
     
         @if(editMode){
-            <!-- <p-button severity="contrast" (click)="changeTheme('vs-dark')">Dark Mode</p-button>
-            <p-button severity="secondary" (click)="changeTheme('vs-light')">Light Mode</p-button> -->
     
             @if(saveLoading){
                 <div class="loading">
@@ -19,9 +17,7 @@
             [(ngModel)]="code"
             ></ngx-monaco-editor>
         }
-    
-        <!-- <div #editorContainer style="height: 600px; border: 1px solid #ccc;" [hidden]="!editMode"></div> -->
-         
+             
     </div>
 
 
