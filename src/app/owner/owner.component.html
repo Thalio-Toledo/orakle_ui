@@ -1,4 +1,3 @@
-
 <div id="owner-menu">
     <p>{{owner.profileName}}</p>
     <p-button label="Profile" icon="pi pi-user" severity="info" (click)="showProfile()" />
@@ -18,17 +17,21 @@
     <p-button label="New"  icon="pi pi-plus" variant="text" severity="secondary" (click)="createArtefact()"/>
 </div>
 
-
 <div id="owner-profile">
     @if (loadingStart) {
 
         <div id="editor-menu">
             <p-button severity="success" (click)="save()">Save</p-button>
             <p-selectbutton [options]="publicOptions" [(ngModel)]="artefact.public" optionLabel="label" optionValue="value" />
-
+            <p-button [label]="isDevMode == true ? 'Dev Mode':'Normal Mode' " (click)="setDevMode()"/>
         </div>
+
         <app-morpheus [markdownText]="markdownText"></app-morpheus>
     }@else {
         <p-progress-spinner class="loading" strokeWidth="8" fill="transparent" animationDuration=".5s" [style]="{ width: '50px', height: '50px' }" />
     }
 </div>
+
+
+
+

@@ -70,6 +70,12 @@ export class ArtefactService {
     return await firstValueFrom(this.http.get<Artefact>(url,{headers: this.headers}));
   }
 
+
+
+
+
+
+
   async create(artefact: Artefact) {
     const url = UrlBuilder.from(this.apiUrl)
     .addRoute('Artefact')
@@ -93,5 +99,4 @@ export class ArtefactService {
 
     return await firstValueFrom(this.http.delete<Artefact>(url,{headers: this.headers}));
   }
-
 }

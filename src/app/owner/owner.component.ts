@@ -25,12 +25,27 @@ import { TooltipModule } from 'primeng/tooltip';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { ToastService } from '../services/toast.service';
+import { EditorModule } from 'primeng/editor';
 
 
 @Component({
   selector: 'app-owner',
   standalone: true,
-  imports: [TooltipModule,FormsModule,SelectButton,ReactiveFormsModule,MenuModule, BadgeModule, RippleModule, AvatarModule, ButtonModule, CommonModule, MorpheusComponent, ProgressSpinner,InputTextModule],
+  imports: [TooltipModule,
+    FormsModule,
+    SelectButton,
+    ReactiveFormsModule,
+    MenuModule,
+    BadgeModule,
+    RippleModule,
+    AvatarModule,
+    ButtonModule,
+    CommonModule,
+    MorpheusComponent,
+    ProgressSpinner,
+    InputTextModule,
+    EditorModule],
+
   templateUrl: './owner.component.html',
   styleUrl: './owner.component.less'
 })
@@ -46,6 +61,8 @@ export class OwnerComponent implements OnInit {
   artefacts: Artefact[] = []
   artefact: Artefact = new Artefact()
   artefactTitle = new FormControl('')
+  text: string | undefined;
+  isDevMode = true
 
   publicOptions: any[] = [
     { label: 'Public', value: true },
@@ -218,6 +235,10 @@ export class OwnerComponent implements OnInit {
     }
     else  
       return artefactTitle
+  }
+
+  setDevMode(){
+    this.isDevMode = !this.isDevMode
   }
 
   logout(){

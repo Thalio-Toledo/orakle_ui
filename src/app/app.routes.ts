@@ -7,7 +7,7 @@ import { OwnerGuardService } from './services/owner-guard.service';
 export const routes: Routes = [
     {
         path:'',
-        redirectTo:'profile',
+        redirectTo:'thalio-toledo',
         pathMatch: 'full'
     },
     {
@@ -16,7 +16,7 @@ export const routes: Routes = [
         canActivate:[OwnerGuardService]
     },
     {
-        path:'profile',
+        path:'thalio-toledo',
         component: ProfileComponent
     },
     {

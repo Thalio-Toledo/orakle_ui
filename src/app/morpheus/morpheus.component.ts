@@ -13,11 +13,12 @@ import { ButtonModule } from 'primeng/button';
 import { ProgressSpinner } from 'primeng/progressspinner';
 import { Ripple } from 'primeng/ripple';
 import { CommonModule } from '@angular/common';
+import { EditorModule } from 'primeng/editor';
 
 @Component({
   selector: 'app-morpheus',
   standalone: true,
-  imports: [FormsModule, ButtonModule,ProgressSpinner, Ripple, MonacoEditorModule,CommonModule],
+  imports: [FormsModule, ButtonModule,ProgressSpinner, Ripple, MonacoEditorModule, CommonModule, EditorModule],
   templateUrl: './morpheus.component.html',
   styleUrl: './morpheus.component.less'
 })
@@ -42,6 +43,7 @@ export class MorpheusComponent implements OnInit{
   titlesToSummary : string[] = []
   convertedHtml = '';
   titleConvertedHtml = '';
+  isDevMode = true
 
   constructor(
     private documentService: ArtefactService,
@@ -107,5 +109,9 @@ export class MorpheusComponent implements OnInit{
     document.title = this.title
     let res = await this.documentService.create(document)
     this.saveLoading = false
+  }
+
+  setDevMode(){
+    this.isDevMode = !this.isDevMode
   }
 }

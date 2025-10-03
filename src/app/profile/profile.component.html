@@ -21,7 +21,7 @@
                     </ng-template>
                     <ng-template #body let-product>
                         <tr (click)="getArtefact(product.artefactId)">
-                            <td>{{ product.creationDate | date: 'yyyy'}}</td>
+                            <td>{{ product.creationDate | date: 'dd/MM/yyyy'}}</td>
                             <td >{{ product.title }}</td>
                         </tr>
                     </ng-template>
