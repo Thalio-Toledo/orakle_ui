@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
 import { BadgeModule } from 'primeng/badge';
@@ -52,6 +52,15 @@ import { EditorModule } from 'primeng/editor';
 export class OwnerComponent implements OnInit {
 
   @ViewChild(MorpheusComponent) morpheus!: MorpheusComponent;
+
+  @HostListener('document:keydown',['$event'])
+  handlerKeyboardEvent(event: KeyboardEvent){
+   if((event.ctrlKey || event.metaKey) && event.key.toLowerCase() == 's'){
+      event.preventDefault();
+      this.save()
+   }
+  }
+
   morpheusMarkdown = '';
   editView: boolean = true;
   items: MenuItem[] | undefined;
